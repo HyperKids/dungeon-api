@@ -18,7 +18,7 @@ dependencies {
 val checkDungeonApi by tasks.registering {
     doLast {
         val latest = runCatching {
-            val c = java.net.URI("https://github.com/HyperKids/dungeon-api/releases/latest/download/version.txt")
+            val c = uri("https://github.com/HyperKids/dungeon-api/releases/latest/download/version.txt")
                 .toURL().openConnection().apply { connectTimeout = 3000; readTimeout = 3000 }
             c.getInputStream().bufferedReader().use { it.readText().trim() }
         }.getOrNull() ?: return@doLast
